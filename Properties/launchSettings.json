@@ -1,8 +1,7 @@
 {
   "profiles": {
     "OledHoleCalculator": {
-      "commandName": "Project",
-      "commandLineArgs": "-p \"128x64\""
+      "commandName": "Project"
     }
   }
 }

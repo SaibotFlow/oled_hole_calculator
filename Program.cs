@@ -28,19 +28,7 @@ namespace OledHoleCalculator
                     {
                         var width = int.Parse(args[1].Split("x")[0]);
                         var height = int.Parse(args[1].Split("x")[1]);
-                        var result = width >= height ? height  : width;
-                        ConsoleEx.WriteLineColor("Maximum Diameter is: " + Math.Round((float)result* 0.264583333333334,2)+"mm", ConsoleColor.Green);
-                        var midPoint = width / 2 + "," + height / 2;
-                        var leftBorder = (width / 2 - result / 2) + "," + (height / 2);
-                        var rightBorder = (width / 2 + result / 2) + "," + (height / 2);
-                        var bottomBorder = (width / 2 + "," + (height / 2+ result / 2));
-                        var topBorder = (width / 2 + "," + (height / 2 - result / 2));
-                        Console.Write(Environment.NewLine);
-                        ConsoleEx.WriteLineColor("Mid Point: \t(" + midPoint+")", ConsoleColor.Green);
-                        ConsoleEx.WriteLineColor("Left Border: \t(" + leftBorder+")", ConsoleColor.Green);
-                        ConsoleEx.WriteLineColor("Right Border: \t(" + rightBorder+")", ConsoleColor.Green);
-                        ConsoleEx.WriteLineColor("Top Border: \t(" + topBorder+")", ConsoleColor.Green);
-                        ConsoleEx.WriteLineColor("Bottom Border: \t(" + bottomBorder+")", ConsoleColor.Green);
+                        Calc(width, height);
                     }
                     catch (Exception)
                     {
@@ -58,9 +46,33 @@ namespace OledHoleCalculator
             }
             else
             {
-                Console.WriteLine("Enter your display size in pixels (128x64) or in inches (0.96) to calculate the maxium diameter");
+                Console.WriteLine("Enter your display size in pixels (128x64)");
+                string input = Console.ReadLine();
+                var width = int.Parse(input.Split("x")[0]);
+                var height = int.Parse(input.Split("x")[1]);
+                Calc(width, height);
             }
-            Console.Read();
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Press any key to close the console...");
+            Console.ReadKey();
+            Environment.Exit(0);
+        }
+
+        static void Calc(int width, int height)
+        {
+            var result = width >= height ? height : width;
+            ConsoleEx.WriteLineColor("Maximum Diameter is: " + Math.Round((float)result * 0.264583333333334, 2) + "mm", ConsoleColor.Green);
+            var midPoint = width / 2 + "," + height / 2;
+            var leftBorder = (width / 2 - result / 2) + "," + (height / 2);
+            var rightBorder = (width / 2 + result / 2) + "," + (height / 2);
+            var bottomBorder = (width / 2 + "," + (height / 2 + result / 2));
+            var topBorder = (width / 2 + "," + (height / 2 - result / 2));
+            Console.Write(Environment.NewLine);
+            ConsoleEx.WriteLineColor("Mid Point: \t(" + midPoint + ")", ConsoleColor.Green);
+            ConsoleEx.WriteLineColor("Left Border: \t(" + leftBorder + ")", ConsoleColor.Green);
+            ConsoleEx.WriteLineColor("Right Border: \t(" + rightBorder + ")", ConsoleColor.Green);
+            ConsoleEx.WriteLineColor("Top Border: \t(" + topBorder + ")", ConsoleColor.Green);
+            ConsoleEx.WriteLineColor("Bottom Border: \t(" + bottomBorder + ")", ConsoleColor.Green);
         }
 
     }
